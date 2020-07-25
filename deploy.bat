@@ -1,0 +1,1 @@
+set GO111MODULE=on&& set GOOS=linux&& set GOARCH=amd64&& set CGO_ENABLED=0&& go build -o bin/teltonika_lambda_decoder serverlessFunctions/teltonika_lambda_decoder/main.go&& go build -o bin/teltonika_lambda_encoder serverlessFunctions/teltonika_lambda_encoder/main.go&& sls deploy

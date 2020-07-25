@@ -1,0 +1,32 @@
+
+
+service: teltonika-hex-parser
+frameworkVersion: '>=1.28.0 <2.0.0'
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: eu-west-1
+  memorySize: 128
+  profile: cc-pk-developer-role
+  stage: dev
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
+  
+functions:
+  parse:
+    handler: bin/teltonika_lambda_decoder
+    events:
+      - http:
+          path: teltonika/{hex}
+          method: get
+  hex_gen:
+    handler: bin/teltonika_lambda_encoder
+    events:
+      - http:
+          path: teltonika/generate
+          method: post
